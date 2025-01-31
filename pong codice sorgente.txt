@@ -1,0 +1,185 @@
+#nero 000
+#bianco 111
+
+#high a10
+#len a9
+
+#bx a14
+#by a13
+
+#oldBx [0]
+#oldBy [1]
+
+#bdirX a12
+#bdirY a11
+
+#py a8
+#pDirY a7
+#PHIGH 2
+
+#oldPyU [2]
+#oldPyD [3]
+
+#uno a6
+
+ass a6 [1]
+
+ass py [8]
+
+ass high [15]
+ass len [15]
+
+ass bx [8]
+ass by [5]
+
+ass bdirX [1]
+ass bdirY [-1]
+
+screen zero zero 000 1
+
+:loop
+
+    gosub printPlayer
+    addi a15 py [PHIGH]
+    storei py oldPyU
+    storei a15 oldPyD
+    
+    :skipPrintPlayer
+
+    storei bx oldBx
+    storei by oldBy
+    screen bx by bianco
+
+
+
+    jump sf1 moveUp
+    jump sf2 moveDown
+    :moveEnd
+
+    addi a15 bdirX [-1]
+    jump == checkRight
+    :checkRightEnd
+
+    addi a15 bdirX [1]
+    jump == checkLeft
+    :checkLeftEnd
+
+    :checkXend
+
+    addi a15 bdirY [-1]
+    jump == checkDown
+    :checkDownEnd
+
+    addi a15 bdirY [1]
+    jump == checkUp
+    :checkUpEnd
+
+    :checkYend
+    
+    loadi a1 oldBx
+    loadi a2 oldBy
+    screen a1 a2 nero
+    
+    loadi a1 oldPyU
+    loadi a2 oldPyD
+
+    sub a15 a1 py
+    jump == skipPrintPlayer
+
+    screen uno a1 nero
+    screen uno a2 nero
+
+    jump np loop
+
+
+
+:checkRight
+    sub a15 bx len
+    jump >= cr1
+    add bx bx bdirX
+    jump np checkRightEnd
+
+    :cr1
+        ass bdirX [-1]
+        add bx bx bdirX
+        jump np checkXend
+
+:checkLeft
+    addi a15 bx [-2]
+    jump < stop
+
+    addi a15 bx [-2]
+    jump > clDritto
+
+    addi a1 py [PHIGH]
+
+    sub a15 by a1
+    jump > clDritto
+    sub a15 by py 
+    jump < clDritto
+
+    
+    ass bdirX [1]
+    add bx bx bdirX
+    jump np checkXend
+
+    :clDritto
+        add bx bx bdirX
+        jump np checkLeftEnd
+
+
+
+
+:checkDown
+    sub a15 by high
+    jump >= cd1
+    add by by bdirY
+    jump np checkDownEnd
+
+    :cd1
+        ass bdirY [-1]
+        add by by bdirY
+        jump np checkYend
+        
+
+:checkUp
+    addi a15 by [-1]
+    jump < cu1
+    add by by bdirY
+    jump np checkUpEnd
+
+    :cu1
+        ass bdirY [1]
+        add by by bdirY
+        jump np checkYend
+
+
+:moveUp
+    addi a15 py [-1]
+    jump < moveEnd
+    addi py py [-1]
+    jump np moveEnd
+
+:moveDown
+    addi a15 py [PHIGH]
+    sub a15 a15 high
+    jump >= moveEnd
+    addi py py [1]
+    jump np moveEnd
+
+
+:printPlayer
+    addi a1 py [1]
+    addi a2 py [2]
+    screen uno py bianco
+    screen uno a1 bianco
+    screen uno a2 bianco
+    
+        
+
+    return
+
+
+:stop
+
+    jump np stop
