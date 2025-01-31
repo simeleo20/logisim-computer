@@ -6,20 +6,16 @@ Google slides [computer logisim](https://docs.google.com/presentation/d/1hx7jZSb
 
 # Premise
 
-This project is poorly done, however it is a milestone for myself of a few years ago who had just learned, broadly speaking, the various architectures such as Von Neuman and Harvard. I didn't know assembly, but I learned about RISC and this was enough for me to create the assembler. Initially I learned about the functioning of basic components such as flip-flops, adders, ALUs and then I continued on my own thanks only to my creativity and logic.
-
-
-
+This project is poorly done, however it is a milestone for myself of a few years ago who had just learned, broadly speaking, the various architectures such as Von Neuman and Harvard. I didn't know assembly, but I learned about RISC (and RISC-V) and this was enough for me to create the assembler and the instruction set. Initially I learned about the functioning of basic components such as flip-flops, adders, ALUs and then I continued on my own thanks only to my creativity and logic.
 
 https://github.com/user-attachments/assets/fde12286-d4a0-4cbe-824f-4169276ae018
-
 
 # Technical Specifications
 
 - Instruction-Set: RISC 
 - Execution model: REG-REG
 - Architecture: Harvard
-- Number of registers: 16 
+- Number of usable registers: 16 
 - Op-code length: 4 bit (16 instructions)
 - Instructions length: 2 byte (16 bit)
 - Instruction memory: 512 byte (256 instructions)
