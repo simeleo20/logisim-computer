@@ -38,3 +38,7 @@ https://github.com/user-attachments/assets/fde12286-d4a0-4cbe-824f-4169276ae018
 | "1010"  | Store rst, rs1, im1     | store byte register  |
 | "1011"  | Ass rd, im1             | Assign               |
 | "1100"  | Screen rx, ry, rgb, clr | Modify Screen        |
+
+# Other information
+
+For other information consult the [Google slides](https://docs.google.com/presentation/d/1hx7jZSbXReomKKLNCeCIdDt5UXV5rjtDp2bpkS4e1x0/edit?usp=sharing)
